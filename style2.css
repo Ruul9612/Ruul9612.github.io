@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #fce4ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card {
+    position: absolute;
+    top: -100%;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: top 1s cubic-bezier(0.25, 0.1, 0.25, 1); /* Transición más suave */
+}
+
+.heart {
+    width: 100px;
+    height: 90px;
+    background-color: #ff4081;
+    position: relative;
+    transform: rotate(-45deg);
+    cursor: pointer;
+    transition: margin-top 1s cubic-bezier(0.25, 0.1, 0.25, 1); /* Transición más suave */
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 100px;
+    height: 90px;
+    background-color: #ff4081;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 50px;
+}
+
+/* Estados activos */
+.container.active .card {
+    top: 0;
+}
+
+.container.active .heart {
+    margin-top: 150px;
+}
