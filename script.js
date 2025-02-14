@@ -1,61 +1,24 @@
-// read custom message from query strings
-// Tutorial -> https://youtu.be/6ojp1iWUKw8
+function rain() {
+    let cloud = document.querySelector('.cloud');
+    let e = document.createElement('div');
 
-const urlSearchParams = new URLSearchParams(window.location.search)
+    e.classList.add('drop');
+    cloud.appendChild(e);
 
-const messageCustom = urlSearchParams.get('message')
+    let left = Math.floor(Math.random() * 290);
+    let size = Math.round() * 1.5;
+    let duration = Math.random() * 1;
 
-if (messageCustom) {
+    e.innerText = '🩷';
+    e.style.left = left + 'px';
+    e.style.fontSize = 0.5 + size + 'em';
+    e.style.animationDirection = 1 + duration + 's';
 
-  const mainMessageElement = document.querySelector('#mainMessage')
-  mainMessageElement.textContent = decodeURI(messageCustom)
+    setTimeout(function () {
+        cloud.removeChild(e)
+    }, 2000)
 }
 
-// the tutorial starts here
-
-const btnOpenElement = document.querySelector('#open')
-const btnCloseElement = document.querySelector('#close')
-
-btnCloseElement.disabled = true
-
-
-
-btnOpenElement.addEventListener('click', ()=> {
-  btnOpenElement.disabled = true
-  btnCloseElement.disabled = false
-  const coverElement = document.querySelector('.cover')
-  coverElement.classList.add('open-cover')
-
-  setTimeout(()=>{
-    //
-    coverElement.style.zIndex = -1
-    
-    const paperElement = document.querySelector('.paper')
-    paperElement.classList.remove('close-paper')
-    paperElement.classList.add('open-paper')
-
-    // animacion del corazón
-    const heartElement = document.querySelector('.heart')
-    heartElement.style.display = 'block'
-  
-  }, 500)
-
-})
-btnCloseElement.addEventListener('click', ()=> {
-  btnOpenElement.disabled = false
-  btnCloseElement.disabled = true
-
-  const coverElement = document.querySelector('.cover')
-  const paperElement = document.querySelector('.paper')
-  paperElement.classList.remove('open-paper')
-  paperElement.classList.add('close-paper')
-  
-  setTimeout(()=>{
-    coverElement.style.zIndex = 0
-    coverElement.classList.remove('open-cover')
-
-    // animacion del corazón
-    const heartElement = document.querySelector('.heart')
-    heartElement.style.display = 'none'
-  },500)
-})
+setInterval(function () {
+    rain()
+}, 20)
